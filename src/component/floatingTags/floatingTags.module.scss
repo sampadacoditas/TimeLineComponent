@@ -1,0 +1,25 @@
+.floatingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+}
+.straightLine {
+  height: 8rem;
+  width: 0.3rem;
+  background-color: #000000;
+}
+
+.floatingTags {
+  border: 3px solid black;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.linedirectionbottom {
+  flex-direction: column-reverse;
+}

@@ -1,0 +1,46 @@
+.list {
+  flex: 1;
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+  }
+
+  &:before {
+    // right: 50%;
+    right: calc(50% - 12px);
+    top: 1.23rem;
+    border-style: solid;
+    border-color: black black transparent transparent;
+    border-width: 10px;
+    transform: rotate(133deg);
+  }
+}
+
+.reverseList {
+  flex: 1;
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+  }
+
+  &:before {
+    right: calc(50% - 12px);
+    bottom: 1.2rem;
+    border-style: solid;
+    border-color: black black transparent transparent;
+    border-width: 10px;
+    transform: rotate(313deg);
+  }
+}
+
+li:first-child {
+  background-color: gray;
+  border-radius: 1rem 0rem 0rem 1rem;
+}
+
+li:last-child {
+  background-color: gray;
+  border-radius: 0rem 1rem 1rem 0rem;
+}
