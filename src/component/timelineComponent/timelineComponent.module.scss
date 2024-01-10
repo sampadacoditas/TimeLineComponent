@@ -7,7 +7,6 @@
   }
 
   &:before {
-    // right: 50%;
     right: calc(50% - 12px);
     top: 1.23rem;
     border-style: solid;
@@ -43,4 +42,49 @@ li:first-child {
 li:last-child {
   background-color: gray;
   border-radius: 0rem 1rem 1rem 0rem;
+}
+
+.container {
+  position: relative;
+}
+.timelineWrapper {
+  margin: 390px 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.listItems {
+  // width: 16%;
+  padding-top: 30px;
+  position: relative;
+}
+
+.itemPlacedtop {
+  position: absolute;
+  bottom: 1.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemPlacedbot {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textBottomPlaced {
+  position: absolute;
+  top: 54px;
+  text-align: center;
+}
+
+.textTopPlaced {
+  position: absolute;
+  bottom: 54px;
+  text-align: center;
 }

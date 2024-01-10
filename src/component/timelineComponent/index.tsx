@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import classes from "./timelineComponent.module.scss";
 import FloatingTags from "../floatingTags";
@@ -83,41 +85,38 @@ const TimelineComponent = () => {
       color: "black",
       duration: "6 Months",
       direction: "bot",
-      },
-    
+    },
   ];
 
   return (
-    <section className="ps-timeline-sec">
-      <div className="container">
-        <ol className={`ps-timeline ${classes.timelines}`}>
+    <div>
+      <div className={classes.container}>
+        <ol className={`${classes.timelineWrapper} ${classes.timelines}`}>
           {timelineData.map((item, index) => (
             <li
               key={index}
               style={{ backgroundColor: item.color }}
               className={
                 item.className.includes("top")
-                  ? classes.list
-                  : classes.reverseList
+                  ? `${classes.listItems} ${classes.list}`
+                  : `${classes.listItems} ${classes.reverseList} `
               }
             >
               <div
                 className={
                   item.className.includes("top")
-                    ? "img-handler-top"
-                    : "img-handler-bot"
+                    ? classes.itemPlacedtop
+                    : classes.itemPlacedbot
                 }
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                
-                }}
               >
                 <FloatingTags direction={item.direction} />
               </div>
               <div
-                className={item.className.includes("top") ? "ps-bot" : "ps-top"}
+                className={
+                  item.className.includes("top")
+                    ? classes.textBottomPlaced
+                    : classes.textTopPlaced
+                }
               >
                 <p>{item.text}</p>
                 <p>Duration:{item.duration}</p>
@@ -127,7 +126,7 @@ const TimelineComponent = () => {
           ))}
         </ol>
       </div>
-    </section>
+    </div>
   );
 };
 
