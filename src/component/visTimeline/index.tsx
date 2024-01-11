@@ -27,12 +27,12 @@ export const VisTimeline: React.FC<TLProps> = (props) => {
   }, [element]);
 
   React.useEffect(() => {
-    // timeline?.setGroups(groups);
+    timeline?.setGroups(groups);
   }, [timeline, groups]);
 
-//   React.useEffect(() => {
-//     // timeline?.setItems(items);
-//   }, [timeline, items]);
+  React.useEffect(() => {
+    // timeline?.setItems(items);
+  }, [timeline, items]);
 
   React.useEffect(() => {
     if (options && timeline) {
@@ -40,12 +40,12 @@ export const VisTimeline: React.FC<TLProps> = (props) => {
     }
   }, [timeline, options]);
 
-    // React.useEffect(() => {
-    //     if (timeline && rangeChangeHandler) {
-    //         timeline.on('rangechange', rangeChangeHandler);
-    //         return () => timeline.off('rangechange', rangeChangeHandler);
-    //     }
-    // }, [timeline, rangeChangeHandler]);
+    React.useEffect(() => {
+        if (timeline && rangeChangeHandler) {
+            timeline.on('rangechange', rangeChangeHandler);
+            return () => timeline.off('rangechange', rangeChangeHandler);
+        }
+    }, [timeline, rangeChangeHandler]);
 
   return <div ref={(r) => setElement(r)} className="custom-timeline" />;
 };
