@@ -158,6 +158,7 @@ import TimeLine from "./component/timeLine";
 import FloatingTags from "./component/floatingTags";
 import { VisTimeline } from "./component/visTimeline";
 import { TimelineOptions } from "vis-timeline";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const oneMonthInMillis = 1000 * 60 * 60 * 24 * 30;
@@ -165,10 +166,32 @@ function App() {
 
   const initialStartDate = Date.now() - oneYearInMillis;
 
-  const [startEnd, setStartEnd] = useState([
-    moment(initialStartDate).startOf("month").toDate(),
-    moment(initialStartDate).endOf("month").toDate(),
+  // const [startEnd, setStartEnd] = useState([
+  //   moment(initialStartDate).startOf("month").toDate(),
+  //   moment(initialStartDate).endOf("month").toDate(),
+  // ]);
+
+  const [startEnd] = React.useState([
+    moment().subtract(10, "y").toDate(),
+    moment().toDate(),
   ]);
+  const [startEndM] = React.useState([
+    moment().toDate(),
+    moment().add(6, "month").toDate(),
+  ]);
+
+  console.log("startEndM", startEndM);
+
+  // const options: TimelineOptions = {
+  //   start: startEnd[0],
+  //   end: startEnd[1],
+  //   min: startEnd[0],
+  //   max: startEnd[1],
+  //   horizontalScroll: true,
+  //   // zoomKey: "ctrlKey",
+  //   orientation: "both",
+  //   zoomMin: 1000 * 60 * 60 * 240,
+  // };
 
   // const [startEnd] = React.useState([
   //   moment().subtract(1, "m").toDate(),
@@ -204,8 +227,40 @@ function App() {
   // };
 
   const timelineRef = useRef<any>(null);
+  const items = [
+    {
+      id: 11,
+      group: 1,
+      start: startEnd[0],
+      end: startEnd[1],
+      content: "kjhkjhkjkjhkjhkjhkjh",
+      // className: `tl-item ${"items"}`,
+    },
+    { id: 1, content: "Event 1", start: "2022-01-01", group: 1, subgroup: 1 },
+    { id: 2, content: "Event 2", start: "2022-03-15", group: 1, subgroup: 2 },
+    { id: 3, content: "Event 3", start: "2022-08-10", group: 2, subgroup: 1 },
+    // ... add more events as needed
+    // {
+    //   id: 12,
+    //   group: 1,
+    //   start: startDate[0],
+    //   end: startEnd[1],
+    //   content: "kjhkjhkjkjhkjhkjhkjh",
+    //   // className: `tl-item ${"items"}`,
+    // },
+  ];
+
   const [options, setOptions] = useState<TimelineOptions>({
     horizontalScroll: true,
+    min: startEnd[0],
+    max: startEnd[1],
+    start: startEndM[0],
+    end: startEndM[1],
+    groupOrder: "subgroup", // Order groups by subgroup
+    groupOrderSwap: (a: any, b: any, groups: any) => {
+      console.log(">>", groups);
+      return groups[b].order - groups[a].order;
+    },
     // start: Date.now() - oneYearInMillis / 2, // Centering on the current date minus half a year
     // end: Date.now() + oneYearInMillis / 2,
     // start: initialStartDate, // Initial start date set to one year ago
@@ -214,12 +269,40 @@ function App() {
     locale: "mylocale",
     zoomKey: "ctrlKey",
     orientation: "bottom",
+    onMove: () => {
+      console.log("first");
+    },
     // zoomMin: 1000 * 60 * 60 * 240,
-    // zoomMin: 5,
-    zoomMin: oneMonthInMillis,
+    // zoomMin: 10,
+    zoomMin: 31500000000,
+    // zoomMin: oneMonthInMillis,
 
-    // timeAxis: { scale: "month" },
-    timeAxis: { scale: "day" },
+    // groupOrder: "byStartDate", // This is optional, but it helps to order groups by start date
+    // groupOrderSwap: (a: any, b: any, groups: any) => {
+    //   console.log("groups");
+    //   return groups[b].order - groups[a].order;
+    // },
+    // group: {
+    //   by: "6 months",
+    //   data: {
+    //     order: (a: any, b: any) => {
+    //       return a.start - b.start;
+    //     },
+    //   },
+    // },
+    // groupTemplate: (a, b, data) => {
+    //   console.log(data);
+    //   console.log("hello", a, b);
+    //   return "";
+    onUpdate: (item) => {
+      console.log(":: item", item);
+    },
+    onMoveGroup: (item) => {
+      console.log(":: item", item);
+    },
+    // },
+    timeAxis: { scale: "month" },
+    // timeAxis: { scale: "day" },
     autoResize: true,
     editable: {
       add: true,
@@ -273,31 +356,79 @@ function App() {
     };
   }, [options]);
 
-  const items = [
-    {
-      id: 11,
-      group: 1,
-      start: startEnd[0],
-      end: startEnd[1],
-      content: "kjhkjhkjkjhkjhkjhkjh",
-      // className: `tl-item ${"items"}`,
-    },
-    // {
-    //   id: 12,
-    //   group: 1,
-    //   start: startDate[0],
-    //   end: startEnd[1],
-    //   content: "kjhkjhkjkjhkjhkjhkjh",
-    //   // className: `tl-item ${"items"}`,
-    // },
-  ];
+  const [load, setLoad] = React.useState(true);
+
+  React.useEffect(() => {
+    let observer = new MutationObserver((mutations) => {
+      const start = document.getElementsByClassName("vis-february");
+      const end = document.getElementsByClassName("vis-june");
+      Array.from(start).forEach((node: any, i) => {
+        console.log(":: i", i);
+
+        if (node) {
+          node.classList.add("start");
+        }
+        console.log(node);
+      });
+
+      Array.from(end).forEach((node: any) => {
+        if (node) {
+          node.classList.add("end");
+        }
+        console.log(node);
+      });
+    });
+
+    observer.observe(document.body, {
+      characterDataOldValue: true,
+      subtree: true,
+      childList: true,
+      characterData: true,
+    });
+  }, []);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      const textNodes = document.getElementsByClassName("vis-text");
+      Array.from(textNodes).forEach((node) => {
+        node.setAttribute("key", uuidv4());
+      });
+      const start = document.getElementsByClassName("vis-february");
+      const end = document.getElementsByClassName("vis-june");
+      Array.from(start).forEach((node: any, i) => {
+        console.log(":: i", i);
+
+        if (node) {
+          node.classList.add("start");
+        }
+        console.log(node);
+      });
+
+      Array.from(end).forEach((node: any) => {
+        if (node) {
+          node.classList.add("end");
+        }
+        console.log(node);
+      });
+    }, 2000);
+  }, []);
+
   return (
     <div style={{ marginTop: "12rem", padding: "1rem", overflowY: "auto" }}>
       {/* <TimeLine /> */}
       {/* <FloatingTags direction="top" /> */}
       {/* <VisTimeline /> */}
       <style>{customStyles}</style>
-      <VisTimeline groups={groups} options={options} items={items} />
+      <VisTimeline
+        onLoadComplete={() => {
+          console.log("first");
+          const nodes = document.getElementsByClassName("vis-june");
+          console.log(":: nodes", nodes);
+        }}
+        groups={groups}
+        options={options}
+        items={items}
+      />
     </div>
   );
 }
