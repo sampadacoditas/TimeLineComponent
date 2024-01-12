@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 5rem;
+  width: 3rem;
 }
 .straightLine {
   height: 8rem;
@@ -15,9 +16,14 @@
   border: 3px solid black;
   border-radius: 50%;
   width: 5rem;
-  height: 5rem;
+  width: auto;
+  min-width: 2rem;
+  height: auto;
+  min-height: 3rem;
   display: flex;
+  // padding: 0.5rem;
   justify-content: center;
+  word-wrap: break-word;
   align-items: center;
 }
 .linedirectionbottom {
