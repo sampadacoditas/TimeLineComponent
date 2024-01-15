@@ -48,7 +48,7 @@ li:last-child {
   position: relative;
 }
 .timelineWrapper {
-  margin: 351px 0;
+  margin: 400px 0;
   padding: 0;
   display: flex;
   list-style: none;
@@ -69,11 +69,13 @@ li:last-child {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  // gap: 2rem;
+  // gap: 0.3rem;
 }
 
 .itemPlacedbot {
   position: absolute;
+  // top: 1.8rem;
   width: 100%;
   display: flex;
   justify-content: center;

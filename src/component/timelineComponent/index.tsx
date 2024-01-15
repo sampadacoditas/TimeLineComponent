@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from "./timelineComponent.module.scss";
 import FloatingTags from "../floatingTags";
+import useWindowUtils from "../../hooks/useWindowUtils";
+import DottedGraph from "../dottedGraph";
 
 const TimelineComponent = () => {
   const [taskItem, setTaskItem] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
   const liRef = useRef(null);
   const [listElement, setListElement] = useState();
+  const { windowDimensions } = useWindowUtils();
   const handleZoomIn = () => {
     setZoomLevel(zoomLevel + 0.1);
     setTaskItem(taskItem + 1);
@@ -18,9 +21,16 @@ const TimelineComponent = () => {
       taskItem > 0 && setTaskItem(taskItem - 1);
     }
   };
+  console.log("ll", zoomLevel);
+
   useEffect(() => {
     calculateWidth();
-  }, [zoomLevel]);
+  }, [
+    zoomLevel,
+    windowDimensions.height,
+    windowDimensions,
+    windowDimensions.width,
+  ]);
 
   const timelineData = [
     {
@@ -32,12 +42,20 @@ const TimelineComponent = () => {
       direction: "top",
       taskbar: [
         { label: "project 1" },
+        { subtask: "sub" },
         { label: "project 1" },
-        // { label: "project 1" },
-        // { label: "project 1" },
-      ],
-      subtaskBar: [
+        { subtask: "sub" },
+        { subtask: "sub" },
         { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { label: "project 1" },
+        { subtask: "subtask1" },
+        { subtask: "subtask1" },
         { label: "project 1" },
         { label: "project 1" },
       ],
@@ -52,14 +70,8 @@ const TimelineComponent = () => {
       taskbar: [
         { label: "project 1" },
         { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
+        { subtask: "sub" },
+        { subtask: "sub" },
       ],
     },
     {
@@ -69,249 +81,6 @@ const TimelineComponent = () => {
       color: "gray",
       duration: "6 Months",
       direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Project 4",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Bench",
-      className: "ps-sp-top",
-      spanText: "04",
-      color: "gray",
-      duration: "20 Days",
-      direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Project 5",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Bench",
-      className: "ps-sp-top",
-      spanText: "04",
-      color: "gray",
-      duration: "20 Days",
-      direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-
-    {
-      text: "Project 5",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Bench",
-      className: "ps-sp-top",
-      spanText: "04",
-      color: "gray",
-      duration: "20 Days",
-      direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Project 5",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Bench",
-      className: "ps-sp-top",
-      spanText: "04",
-      color: "gray",
-      duration: "20 Days",
-      direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Project 5",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Bench",
-      className: "ps-sp-top",
-      spanText: "04",
-      color: "gray",
-      duration: "20 Days",
-      direction: "top",
-      taskbar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-      subtaskBar: [
-        { label: "project 1" },
-        { label: "project 1" },
-        { label: "project 1" },
-      ],
-    },
-    {
-      text: "Project 5",
-      className: "ps-sp-bot",
-      spanText: "04",
-      color: "black",
-      duration: "6 Months",
-      direction: "bot",
       taskbar: [
         { label: "project 1" },
         { label: "project 1" },
@@ -338,10 +107,49 @@ const TimelineComponent = () => {
       setListElement(width);
     }
   };
-  console.log(liRef.current);
+  console.log(">>>>", zoomLevel === 1);
 
   return (
     <div>
+      <div
+        style={{
+          width: `${
+            zoomLevel === 1
+              ? "calc(100% - 6rem)"
+              : `calc(${100 * zoomLevel}% - 6rem)`
+          }`,
+          position: "absolute",
+          top: "1rem",
+        }}
+      >
+        <DottedGraph
+          dataSetXAxis={["jan", "june", "jan", "june", "jan", "june", "jan"]}
+          datasetValue={[360, 400, 400, 500, 550, 600, 800]}
+          lineType={"dashed"}
+          id="uniqueId2"
+          seriesStep={"end"}
+          listElementWidth={listElement}
+        />
+      </div>
+      <div
+        style={{
+          width: `${
+            zoomLevel === 1
+              ? "calc(100% - 6rem)"
+              : `calc(${100 * zoomLevel}% - 6rem)`
+          }`,
+          position: "absolute",
+          top: "5rem",
+        }}
+      >
+        <DottedGraph
+          dataSetXAxis={["jan", "june", "jan", "june", "jan", "june", "jan"]}
+          datasetValue={[36, 40, 40, 50, 55, 60, 88]}
+          lineType={"dashed"}
+          id="uniqueId1"
+          listElementWidth={listElement}
+        />
+      </div>
       <div className={classes.container}>
         <ol className={`${classes.timelineWrapper} ${classes.timelines}`}>
           {timelineData.map((item, index) => (
@@ -350,12 +158,11 @@ const TimelineComponent = () => {
               ref={liRef}
               style={{
                 backgroundColor: item.color,
-                // transform: `scaleX(${zoomLevel})`,
+
                 minWidth: `${
                   (zoomLevel === 1 ? zoomLevel : 100 * zoomLevel) /
                   timelineData.length
                 }%`,
-                // width: `${100 * zoomLevel}%`,
               }}
               className={
                 item.className.includes("top")
@@ -369,13 +176,12 @@ const TimelineComponent = () => {
                     ? classes.itemPlacedtop
                     : classes.itemPlacedbot
                 }
-                // style={{ transform: `scaleX(${1 / zoomLevel})` }}
               >
                 <FloatingTags
                   direction={item.direction}
                   taskbar={item.taskbar}
-                  // taskItem={taskItem}
                   zoomlevel={zoomLevel}
+                  liRef={liRef}
                   listElementWidth={listElement}
                   subtaskBar={item.subtaskBar}
                 />
@@ -386,7 +192,6 @@ const TimelineComponent = () => {
                     ? classes.textBottomPlaced
                     : classes.textTopPlaced
                 }
-                // style={{ transform: `scaleX(${1 / zoomLevel})` }}
               >
                 <p>{item.text}</p>
                 <p>Duration:{item.duration}</p>

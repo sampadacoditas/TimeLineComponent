@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 5rem;
-  width: 3rem;
+  // width: 3rem;
 }
 .straightLine {
   height: 8rem;
@@ -15,11 +15,10 @@
 .floatingTags {
   border: 3px solid black;
   border-radius: 50%;
-  width: 5rem;
-  width: auto;
-  min-width: 2rem;
-  height: auto;
-  min-height: 3rem;
+  width: 4rem;
+
+  height: 4rem;
+
   display: flex;
   // padding: 0.5rem;
   justify-content: center;
@@ -27,5 +26,42 @@
   align-items: center;
 }
 .linedirectionbottom {
-  flex-direction: column-reverse;
+  margin-bottom: 1rem;
+  flex-direction: column-reverse !important;
+}
+
+.floatingsubTaskContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  // margin-top: 6rem;
+  // margin-right: 1.2rem;
+
+  width: 3rem;
+  margin-top: 6rem;
+  flex: 1;
+}
+.straightLinesubtask {
+  height: 2rem;
+  width: 0.3rem;
+  background-color: #000000;
+}
+
+.linesubtaskdirectionbottom {
+  // margin-top: -7rem !important;
+  // margin-top: 0rem !important;
+  margin-top: -4rem;
+  flex-direction: column-reverse !important;
+}
+
+.subTask {
+  margin-bottom: -6rem !important;
+  // position: absolute;
+  // bottom: -1.2rem;
+}
+
+.bottomreverse {
+  margin-top: -3rem;
 }
