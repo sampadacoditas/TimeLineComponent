@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-// import { DEVICE_RATIO, DeviceType } from "../enum";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;

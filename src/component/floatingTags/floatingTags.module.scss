@@ -1,65 +1,44 @@
+@import "../../styles/mixin.scss";
+
 .floatingContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  // width: 3rem;
+  @include widthHeight(5rem, null);
+  @include flexProps(flex, center, center, column);
 }
 .straightLine {
-  height: 8rem;
-  width: 0.3rem;
+  @include widthHeight(0.3rem, 8rem);
   background-color: #000000;
 }
 
 .floatingTags {
   border: 3px solid black;
   border-radius: 50%;
-  width: 4rem;
-
-  height: 4rem;
-
-  display: flex;
-  // padding: 0.5rem;
-  justify-content: center;
-  word-wrap: break-word;
-  align-items: center;
+  @include widthHeight(4rem, 4rem);
+  @include flexProps(flex, center, center);
 }
 .linedirectionbottom {
   margin-bottom: 1rem;
-  flex-direction: column-reverse !important;
+  @include flexProps(null, null, null, column-reverse !important);
 }
 
 .floatingsubTaskContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  // margin-top: 6rem;
-  // margin-right: 1.2rem;
-
+  @include flexProps(flex, center, center, column);
   width: 3rem;
+  @include widthHeight(3rem, null);
   margin-top: 6rem;
   flex: 1;
 }
 .straightLinesubtask {
-  height: 2rem;
-  width: 0.3rem;
+  @include widthHeight(0.3rem, 2rem);
   background-color: #000000;
 }
 
 .linesubtaskdirectionbottom {
-  // margin-top: -7rem !important;
-  // margin-top: 0rem !important;
   margin-top: -4rem;
-  flex-direction: column-reverse !important;
+  @include flexProps(null, null, null, column-reverse !important);
 }
 
 .subTask {
   margin-bottom: -6rem !important;
-  // position: absolute;
-  // bottom: -1.2rem;
 }
 
 .bottomreverse {
