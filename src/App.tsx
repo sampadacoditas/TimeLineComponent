@@ -1,5 +1,5 @@
 import "./App.css";
-import TimeLine from "./component/timeLine";
+import TimeLine from "./component/TimeLine";
 
 function App() {
   return <TimeLine />;

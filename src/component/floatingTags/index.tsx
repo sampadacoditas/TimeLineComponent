@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import classes from "./floatingTags.module.scss";
+import classes from "./FloatingTags.module.scss";
 import useWindowUtils from "../../hooks/useWindowUtils";
-import { IFloatingTags } from "./ifloatingTags";
+import { IFloatingTags } from "./IFloatingTags";
 const FloatingTags = (props: IFloatingTags) => {
   const { direction, taskbar, zoomlevel, listElementWidth } = props;
 
@@ -30,7 +30,7 @@ const FloatingTags = (props: IFloatingTags) => {
       {Array.isArray(taskbar) &&
         taskbar?.map((item: any, index: number) => {
           return (
-            <>
+            <Fragment>
               {listElementWidth > targetElementSize * index && (
                 <div
                   ref={tagRef}
@@ -57,7 +57,7 @@ const FloatingTags = (props: IFloatingTags) => {
                   )}
                 </div>
               )}
-            </>
+            </Fragment>
           );
         })}
     </Fragment>

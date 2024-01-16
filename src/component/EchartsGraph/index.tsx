@@ -1,7 +1,8 @@
 import * as echarts from "echarts";
-import React, { useEffect, useState } from "react";
-import classes from "./echartsGraph.module.scss";
-const DottedGraph = (props: any) => {
+import { useEffect } from "react";
+import classes from "./EchartsGraph.module.scss";
+import { ICharts } from "./IEchartsGraph";
+const EchartsGraph = (props: ICharts) => {
   const {
     title = "",
     dataSetXAxis,
@@ -9,15 +10,7 @@ const DottedGraph = (props: any) => {
     lineType,
     id,
     seriesStep,
-    listElementWidth,
   } = props;
-
-  const [listWidth, setListWidth] = useState(listElementWidth);
-
-  useEffect(() => {
-    console.log("hello", listElementWidth);
-    setListWidth(listElementWidth);
-  }, [listElementWidth]);
 
   useEffect(() => {
     const dom = document.getElementById(`chart-container-${id}`);
@@ -34,7 +27,7 @@ const DottedGraph = (props: any) => {
         trigger: "axis",
       },
       legend: {
-        data: ["Email", "Union Ads", "Video Ads", "Direct", "Search Engine"],
+        data: [],
       },
       grid: {
         left: "3%",
@@ -44,7 +37,6 @@ const DottedGraph = (props: any) => {
       },
 
       xAxis: {
-        type: "category",
         boundaryGap: false,
         data: dataSetXAxis,
         axisLine: { show: false },
@@ -54,7 +46,6 @@ const DottedGraph = (props: any) => {
         show: false,
       },
       yAxis: {
-        type: "value",
         axisLabel: {
           show: false,
         },
@@ -128,11 +119,11 @@ const DottedGraph = (props: any) => {
       myChart.dispose();
       window.removeEventListener("resize", resizeChart);
     };
-  }, [id]);
+  }, [dataSetXAxis, datasetValue, id, lineType, seriesStep, title]);
 
   return (
     <div id={`chart-container-${id}`} className={classes.echartContainer} />
   );
 };
 
-export default DottedGraph;
+export default EchartsGraph;

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import classes from "./timelineComponent.module.scss";
-import FloatingTags from "../floatingTags";
+import classes from "./TimelineComponent.module.scss";
+import FloatingTags from "../FloatingTags";
 import useWindowUtils from "../../hooks/useWindowUtils";
-import DottedGraph from "../EchartsGraph";
 import { dataSetXAxis, timelineData } from "./data";
+import EchartsGraph from "../EchartsGraph";
 
 const TimelineComponent = () => {
   const [taskItem, setTaskItem] = useState<number>(0);
@@ -53,7 +53,7 @@ const TimelineComponent = () => {
         }}
         className={classes.stepGraph}
       >
-        <DottedGraph
+        <EchartsGraph
           dataSetXAxis={dataSetXAxis}
           datasetValue={[360, 400, 400, 500, 550, 600, 800]}
           lineType={"dashed"}
@@ -63,7 +63,7 @@ const TimelineComponent = () => {
         />
       </div>
       <div style={{ width: customWidth }} className={classes.dottedGraph}>
-        <DottedGraph
+        <EchartsGraph
           dataSetXAxis={dataSetXAxis}
           datasetValue={[36, 40, 40, 50, 55, 60, 88]}
           lineType={"dashed"}
@@ -115,7 +115,6 @@ const TimelineComponent = () => {
                   <p>{item.text}</p>
                   <p>Duration:{item.duration}</p>
                 </div>
-                <span className={item.className}></span>
               </li>
             ))}
         </ol>

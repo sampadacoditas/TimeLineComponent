@@ -1,5 +1,5 @@
-import classes from "./timLineItems.module.scss";
-import TimelineComponent from "../timelineComponent";
+import TimelineComponent from "../TimelineComponent";
+import classes from "./TimLine.module.scss";
 
 const TimeLine = () => {
   return (
