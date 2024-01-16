@@ -12,7 +12,7 @@
     @include position(absolute, 1.23rem, calc(50% - 12px));
     border-style: solid;
     border-color: black black transparent transparent;
-    border-width: 10px;
+    border-width: 0.625rem;
     transform: rotate(133deg);
   }
 }
@@ -29,18 +29,17 @@
     @include position(absolute, null, calc(50% - 12px), 1.2rem, null);
     border-style: solid;
     border-color: black black transparent transparent;
-    border-width: 10px;
+    border-width: 0.625rem;
     transform: rotate(313deg);
   }
 }
 
-li:first-child {
-  background-color: gray;
+li:first-child,
+li:last-child {
   border-radius: 1rem 0rem 0rem 1rem;
 }
 
 li:last-child {
-  background-color: gray;
   border-radius: 0rem 1rem 1rem 0rem;
 }
 
@@ -50,8 +49,8 @@ li:last-child {
 .timelineWrapper {
   margin: 25rem 0;
   padding: 0;
-  @include flexProps(flex);
   list-style: none;
+  @include flexProps(flex);
 }
 
 .listItems {
@@ -82,7 +81,6 @@ li:last-child {
 }
 
 .stepGraph {
-  position: absolute;
   @include position(absolute, 1rem, null, null, null);
 }
 .dottedGraph {

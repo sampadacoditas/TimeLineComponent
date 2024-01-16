@@ -10,7 +10,7 @@
 }
 
 .floatingTags {
-  border: 3px solid black;
+  border: 0.188rem solid black;
   border-radius: 50%;
   @include widthHeight(4rem, 4rem);
   @include flexProps(flex, center, center);
@@ -38,7 +38,7 @@
 }
 
 .subTask {
-  margin-bottom: -6rem !important;
+  margin-bottom:-6rem !important;
 }
 
 .bottomreverse {
