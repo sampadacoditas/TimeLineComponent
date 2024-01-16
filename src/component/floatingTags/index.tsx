@@ -5,20 +5,20 @@ import { IFloatingTags } from "./IFloatingTags";
 const FloatingTags = (props: IFloatingTags) => {
   const { direction, taskbar, zoomlevel, listElementWidth } = props;
 
-  const tagRef = useRef(null);
+  const tagRef = useRef<HTMLDivElement | null>(null);
   const { windowDimensions } = useWindowUtils();
-  const [targetElementSize, setTargetElementSize] = useState(80);
+  const [targetElementSize, setTargetElementSize] = useState<number>(80);
 
-  const calculateWidth = (ref: any, setSize: any) => {
-    const element = ref.current;
+  const calculateWidth = () => {
+    const element = tagRef.current;
     if (element) {
       const width = element.getBoundingClientRect().width;
-      setSize(width);
+      setTargetElementSize(width);
     }
   };
 
   useEffect(() => {
-    calculateWidth(tagRef, setTargetElementSize);
+    calculateWidth();
   }, [
     zoomlevel,
     listElementWidth,
