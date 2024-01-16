@@ -30,10 +30,8 @@ const TimelineComponent = () => {
 
   const calculateWidth = () => {
     const liElement = liRef.current;
-    if (liElement) {
-      const width = liElement?.getBoundingClientRect()?.width;
-      setListElementWidth(width);
-    }
+    const width = liElement && liElement?.getBoundingClientRect()?.width;
+    setListElementWidth(width);
   };
 
   useEffect(() => {
