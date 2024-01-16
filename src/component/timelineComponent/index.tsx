@@ -8,7 +8,7 @@ import EchartsGraph from "../EchartsGraph";
 const TimelineComponent = () => {
   const [taskItem, setTaskItem] = useState<number>(0);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
-  const liRef = useRef<any | null>(null);
+  const liRef = useRef<HTMLLIElement | null>(null);
   const [listElementWidth, setListElementWidth] = useState<number>(0);
   const { windowDimensions } = useWindowUtils();
 
@@ -31,7 +31,7 @@ const TimelineComponent = () => {
   const calculateWidth = () => {
     const liElement = liRef.current;
     const width = liElement && liElement?.getBoundingClientRect()?.width;
-    setListElementWidth(width);
+    width && setListElementWidth(width);
   };
 
   useEffect(() => {
