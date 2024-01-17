@@ -1,15 +1,8 @@
-import React from "react";
 import "./App.css";
-import TimeLine from "./component/timeLine";
-import FloatingTags from "./component/floatingTags";
+import TimeLine from "./component/TimeLine";
 
 function App() {
-  return (
-    <div>
-      <TimeLine />
-      {/* <FloatingTags direction="top" /> */}
-    </div>
-  );
+  return <TimeLine />;
 }
 
 export default App;

@@ -1,10 +1,12 @@
-import React from 'react'
-import TimLineItems from '../timLineItems/inde'
+import TimelineComponent from "../TimelineComponent";
+import classes from "./TimLine.module.scss";
 
 const TimeLine = () => {
   return (
-    <div><TimLineItems/></div>
-  )
-}
+    <div className={classes.timelineWrapper}>
+      <TimelineComponent />
+    </div>
+  );
+};
 
-export default TimeLine
+export default TimeLine;

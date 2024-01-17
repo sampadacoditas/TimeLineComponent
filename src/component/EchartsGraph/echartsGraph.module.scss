@@ -1,0 +1,5 @@
+@import "../../styles/mixin.scss";
+
+.echartContainer {
+  @include widthHeight(100%, 12.5rem);
+}

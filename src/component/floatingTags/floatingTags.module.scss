@@ -1,25 +1,46 @@
+@import "../../styles/mixin.scss";
+
 .floatingContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
+  @include widthHeight(5rem, null);
+  @include flexProps(flex, center, center, column);
 }
 .straightLine {
-  height: 8rem;
-  width: 0.3rem;
+  @include widthHeight(0.3rem, 8rem);
   background-color: #000000;
 }
 
 .floatingTags {
-  border: 3px solid black;
+  border: 0.188rem solid black;
   border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include widthHeight(4rem, 4rem);
+  @include flexProps(flex, center, center);
 }
 .linedirectionbottom {
-  flex-direction: column-reverse;
+  margin-bottom: 1rem;
+  @include flexProps(null, null, null, column-reverse !important);
+}
+
+.floatingsubTaskContainer {
+  @include flexProps(flex, center, center, column);
+  width: 3rem;
+  @include widthHeight(3rem, null);
+  margin-top: 6rem;
+  flex: 1;
+}
+.straightLinesubtask {
+  @include widthHeight(0.3rem, 2rem);
+  background-color: #000000;
+}
+
+.linesubtaskdirectionbottom {
+  margin-top: -4rem;
+  @include flexProps(null, null, null, column-reverse !important);
+}
+
+.subTask {
+  margin-bottom:-6rem !important;
+}
+
+.bottomreverse {
+  margin-top: -3rem;
 }

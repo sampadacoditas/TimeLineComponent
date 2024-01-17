@@ -1,17 +1,18 @@
+@import "../../styles/mixin.scss";
+
 .list {
   flex: 1;
   &:after,
   &:before {
     content: "";
-    position: absolute;
+    @include position(absolute);
   }
 
   &:before {
-    right: calc(50% - 12px);
-    top: 1.23rem;
+    @include position(absolute, 1.23rem, calc(50% - 12px));
     border-style: solid;
     border-color: black black transparent transparent;
-    border-width: 10px;
+    border-width: 0.625rem;
     transform: rotate(133deg);
   }
 }
@@ -21,70 +22,67 @@
   &:after,
   &:before {
     content: "";
-    position: absolute;
+    @include position(absolute);
   }
 
   &:before {
-    right: calc(50% - 12px);
-    bottom: 1.2rem;
+    @include position(absolute, null, calc(50% - 12px), 1.2rem, null);
     border-style: solid;
     border-color: black black transparent transparent;
-    border-width: 10px;
+    border-width: 0.625rem;
     transform: rotate(313deg);
   }
 }
 
-li:first-child {
-  background-color: gray;
+li:first-child,
+li:last-child {
   border-radius: 1rem 0rem 0rem 1rem;
 }
 
 li:last-child {
-  background-color: gray;
   border-radius: 0rem 1rem 1rem 0rem;
 }
 
 .container {
-  position: relative;
+  @include position(relative);
 }
 .timelineWrapper {
-  margin: 390px 0;
+  margin: 25rem 0;
   padding: 0;
-  display: flex;
   list-style: none;
+  @include flexProps(flex);
 }
 
 .listItems {
-  // width: 16%;
-  padding-top: 30px;
-  position: relative;
+  @include widthHeight(null, 1.875rem);
+  @include position(relative);
 }
 
 .itemPlacedtop {
-  position: absolute;
-  bottom: 1.8rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include widthHeight(100%, null);
+  @include position(absolute, null, null, 1.8rem);
+  @include flexProps(flex, center, center);
 }
 
 .itemPlacedbot {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include position(absolute);
+  @include widthHeight(100%, null);
+  @include flexProps(flex, center, center);
 }
 
 .textBottomPlaced {
-  position: absolute;
-  top: 54px;
+  @include position(absolute, 3.375rem);
   text-align: center;
 }
 
 .textTopPlaced {
-  position: absolute;
-  bottom: 54px;
+  @include position(absolute, null, null, 3.375rem, null);
   text-align: center;
+}
+
+.stepGraph {
+  @include position(absolute, 1rem, null, null, null);
+}
+.dottedGraph {
+  @include position(absolute, 5rem, null, null, null);
 }
